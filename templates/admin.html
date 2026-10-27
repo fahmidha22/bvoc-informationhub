@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | B.Voc Information Hub</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        /* =========================
+           MAIN LAYOUT
+        ========================= */
+
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 260px;
+            background: #0f172a;
+            color: white;
+            padding: 25px 18px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        .sidebar-logo {
+            font-size: 21px;
+            font-weight: bold;
+
+            padding: 10px 12px 25px;
+
+            border-bottom: 1px solid #334155;
+        }
+
+
+        .sidebar-title {
+            font-size: 12px;
+            color: #94a3b8;
+
+            margin: 25px 12px 10px;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           SIDEBAR BUTTONS
+        ========================= */
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+
+        .sidebar-menu a {
+            text-decoration: none;
+            color: #cbd5e1;
+
+            padding: 13px 14px;
+
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+        }
+
+
+        .sidebar-menu a:hover {
+            background: #1e293b;
+            color: white;
+        }
+
+
+        .sidebar-menu a.active {
+            background: #2563eb;
+            color: white;
+        }
+
+
+        .menu-icon {
+            width: 25px;
+            font-size: 19px;
+            text-align: center;
+        }
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+
+        .logout {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            text-decoration: none;
+
+            background: #ef4444;
+            color: white;
+
+            padding: 13px 14px;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+        }
+
+
+        .logout:hover {
+            background: #dc2626;
+        }
+
+
+        /* =========================
+           MAIN CONTENT
+        ========================= */
+
+        .main-content {
+            margin-left: 260px;
+
+            width: calc(100% - 260px);
+
+            padding: 40px;
+        }
+
+
+        /* =========================
+           WELCOME
+        ========================= */
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+
+        .welcome h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+
+        .welcome p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+
+        /* =========================
+           DASHBOARD CARDS
+        ========================= */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 35px;
+        }
+
+
+        .dashboard-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+        }
+
+
+        .dashboard-card-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+
+        .dashboard-card h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+
+        .dashboard-card p {
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        .section {
+            margin-top: 30px;
+        }
+
+
+        .section h2 {
+            margin-bottom: 15px;
+        }
+
+
+        .info-box {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.06);
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+
+        th {
+            text-align: left;
+
+            padding: 12px;
+
+            border-bottom:
+                2px solid #e2e8f0;
+        }
+
+
+        td {
+            padding: 12px;
+
+            border-bottom:
+                1px solid #e2e8f0;
+        }
+
+
+        td.user-id {
+            font-size: 12px;
+            color: #64748b;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 220px;
+            }
+
+            .main-content {
+                margin-left: 220px;
+                width: calc(100% - 220px);
+                padding: 25px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .sidebar {
+                position: relative;
+
+                width: 100%;
+
+                min-height: auto;
+            }
+
+            .admin-layout {
+                flex-direction: column;
+            }
+
+            .main-content {
+                margin-left: 0;
+
+                width: 100%;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="admin-layout">
+
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-logo">
+            🎓 B.Voc Admin
+        </div>
+
+
+        <div class="sidebar-title">
+            Management
+        </div>
+
+
+        <nav class="sidebar-menu">
+
+            <!-- Departments -->
+
+            <a href="/admin/departments">
+
+                <span class="menu-icon">
+                    🎓
+                </span>
+
+                <span>
+                    Departments
+                </span>
+
+            </a>
+
+
+            <!-- Achievements -->
+
+            <a href="/admin/achievements">
+
+                <span class="menu-icon">
+                    🏆
+                </span>
+
+                <span>
+                    Achievements
+                </span>
+
+            </a>
+
+
+            <!-- Faculty -->
+
+            <a href="/admin/faculty">
+
+                <span class="menu-icon">
+                    👨‍🏫
+                </span>
+
+                <span>
+                    Faculty
+                </span>
+
+            </a>
+
+
+            <!-- Placements -->
+
+            <a href="/admin/placements">
+
+                <span class="menu-icon">
+                    💼
+                </span>
+
+                <span>
+                    Placements
+                </span>
+
+            </a>
+
+
+        </nav>
+
+
+        <!-- Logout -->
+
+        <div class="sidebar-bottom">
+
+            <a href="/logout" class="logout">
+
+                <span>
+                    🚪
+                </span>
+
+                <span>
+                    Logout
+                </span>
+
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <main class="main-content">
+
+
+        <!-- Welcome -->
+
+        <div class="welcome">
+
+            <h1>
+                Welcome, Admin 👋
+            </h1>
+
+            <p>
+                Manage the B.Voc Information Hub from this dashboard.
+            </p>
+
+        </div>
+
+
+
+        <!-- =====================================
+             QUICK INFORMATION CARDS
+        ====================================== -->
+
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-card">
+
+                <div class="dashboard-card-icon">
+                    👥
+                </div>
+
+                <h3>
+                    {{ users|length }}
+                </h3>
+
+                <p>
+                    Registered Users
+                </p>
+
+            </div>
+
+
+            <div class="info-box">
+
+
+                <div class="table-container">
+
+
+                    <table>
+
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Role
+                                </th>
+
+                                <th>
+                                    User ID
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+
+                            {% for user in users %}
+
+
+                            <tr>
+
+
+                                <td>
+                                    {{ user.get("name", "Not available") }}
+                                </td>
+
+
+                                <td>
+                                    {{ user.get("email", "Not available") }}
+                                </td>
+
+
+                                <td>
+                                    {{ user.get("role", "student") }}
+                                </td>
+
+
+                                <td class="user-id">
+
+                                    {{ user.get("uid", user.get("id", "")) }}
+
+                                </td>
+
+
+                            </tr>
+
+
+                            {% else %}
+
+
+                            <tr>
+
+                                <td colspan="4"
+                                    style="text-align:center; padding:20px;">
+
+                                    No users found.
+
+                                </td>
+
+                            </tr>
+
+
+                            {% endfor %}
+
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+       
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>

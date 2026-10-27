@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Management</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            background: #020617;
+            color: #f8fafc;
+        }
+
+        .faculty-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .faculty-header h1 {
+            color: #f8fafc;
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .faculty-header p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        .department-faculty-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .department-faculty-card h2 {
+            color: #0f172a;
+            margin: 0 0 5px 0;
+            font-size: 24px;
+        }
+
+        .department-code {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .faculty-member {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .faculty-member h3 {
+            color: #0f172a;
+            margin: 0 0 8px 0;
+            font-size: 18px;
+        }
+
+        .faculty-member p {
+            color: #475569;
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .faculty-member strong {
+            color: #1e293b;
+        }
+
+        .manage-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 11px 18px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .manage-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .empty-message {
+            color: #64748b;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="faculty-container">
+
+    <a href="/admin" class="back-btn">
+        ← Back to Admin Dashboard
+    </a>
+
+    <div class="faculty-header">
+        <h1>Faculty Management</h1>
+        <p>Manage faculty members for each B.Voc department.</p>
+    </div>
+
+
+    {% for department in departments %}
+
+    <div class="department-faculty-card">
+
+        <h2>{{ department.name }}</h2>
+
+        <div class="department-code">
+            {{ department.shortCode }}
+        </div>
+
+
+        {% if department.faculty %}
+
+            {% for member in department.faculty %}
+
+            <div class="faculty-member">
+
+                <h3>
+                    {{ member.name }}
+                </h3>
+
+                {% if member.designation %}
+                <p>
+                    <strong>Designation:</strong>
+                    {{ member.designation }}
+                </p>
+                {% endif %}
+
+                {% if member.qualification %}
+                <p>
+                    <strong>Qualification:</strong>
+                    {{ member.qualification }}
+                </p>
+                {% endif %}
+
+                {% if member.specialization %}
+                <p>
+                    <strong>Specialization:</strong>
+                    {{ member.specialization }}
+                </p>
+                {% endif %}
+
+                {% if member.experience %}
+                <p>
+                    <strong>Experience:</strong>
+                    {{ member.experience }}
+                </p>
+                {% endif %}
+
+                {% if member.email %}
+                <p>
+                    <strong>Email:</strong>
+                    {{ member.email }}
+                </p>
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="empty-message">
+                No faculty members added yet.
+            </p>
+
+        {% endif %}
+
+
+        <a
+            href="/admin/faculty/edit/{{ department.id }}"
+            class="manage-btn"
+        >
+            Manage Faculty
+        </a>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievements Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+    body {
+    background: #020617;
+    color: #f8fafc;
+    }
+    .achievement-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+    }
+
+    .back-btn {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #60a5fa;
+    text-decoration: none;
+    }
+
+    .achievement-header h1 {
+    color: #f8fafc;
+    font-size: 34px;
+    margin-bottom: 8px;
+    }
+
+    .achievement-header p {
+    color: #94a3b8;
+    margin-bottom: 30px;
+    }
+
+    .department-card {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 25px;
+    }
+
+    .department-card h2 {
+    color: #0f172a;
+    margin: 0 0 5px;
+    }
+
+    .department-code {
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 20px;
+    }
+
+    .achievement-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 15px;
+    }
+
+    .achievement-item h3 {
+    color: #0f172a;
+    margin: 0 0 8px;
+    }
+
+    .achievement-item p {
+    color: #475569;
+    margin: 5px 0;
+    line-height: 1.5;
+    }
+
+    .achievement-item strong {
+    color: #1e293b;
+    }
+
+    .manage-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 11px 18px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    }
+
+    .manage-btn:hover {
+    background: #1d4ed8;
+    }
+
+    .empty-message {
+    color: #64748b;
+    font-style: italic;
+    }
+
+</style>
+</head>
+<body>
+
+<div class="achievement-container">
+    <a href="/admin" class="back-btn">← Back to Admin Dashboard</a>
+<div class="achievement-header">
+<h1>Achievements Management</h1>
+<p>Manage achievements and milestones for each B.Voc department.</p>
+</div>
+{% for department in departments %}
+
+    <div class="department-card">
+        <h2>{{ department.name }}</h2>
+    <div class="department-code">
+        {{ department.shortCode }}
+    </div>
+    {% if department.achievements %}
+{% for achievement in department.achievements %}
+    <div class="achievement-item">
+        <h3> {{ achievement.title }} </h3>
+        {% if achievement.category %}
+    <p>
+        <strong>Category:</strong>
+        {{ achievement.category }} </p>
+                {% endif %}
+                 {% if achievement.year %}
+    <p>
+        <strong>Year:</strong>
+                {{ achievement.year }}
+    </p>
+                {% endif %}
+                {% if achievement.badge %}
+    <p>
+        <strong>Badge:</strong>
+                    {{ achievement.badge }}
+    </p>
+                {% endif %}
+                {% if achievement.studentName %}
+    <p>
+        <strong>Student:</strong>
+                {{ achievement.studentName }}
+    </p>
+                {% endif %}
+                 {% if achievement.description %}
+    <p>
+        <strong>Description:</strong>
+                {{ achievement.description }}
+    </p>
+                {% endif %}
+    </div>
+         {% endfor %}
+         {% else %}
+    <p class="empty-message">
+                No achievements added yet.
+    </p>
+        {% endif %}
+     <a href="/admin/achievements/edit/{{ department.id }}"
+    class="manage-btn">
+            Manage Achievements</a>
+</div>
+    {% endfor %}
+</div>
+    </body>
+</html>

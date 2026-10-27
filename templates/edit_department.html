@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Edit Department | B.Voc Admin
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background: #f1f5f9;
+
+            color: #0f172a;
+
+            min-height: 100vh;
+
+        }
+
+
+        /* NAVBAR */
+
+        .navbar {
+
+            background: #0f172a;
+
+            color: white;
+
+            padding: 18px 40px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .navbar h2 {
+
+            font-size: 22px;
+
+        }
+
+
+        .back-button {
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+        }
+
+
+        .back-button:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        /* CONTAINER */
+
+        .container {
+
+            max-width: 900px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+
+        }
+
+
+        .heading {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .heading h1 {
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .heading p {
+
+            color: #64748b;
+
+        }
+
+
+        /* FORM */
+
+        .form-card {
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 22px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: 600;
+
+            color: #334155;
+
+        }
+
+
+        input,
+        textarea {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: Arial, sans-serif;
+
+            outline: none;
+
+        }
+
+
+        input:focus,
+        textarea:focus {
+
+            border-color: #2563eb;
+
+        }
+
+
+        textarea {
+
+            min-height: 130px;
+
+            resize: vertical;
+
+            line-height: 1.6;
+
+        }
+
+
+        .readonly {
+
+            background: #f8fafc;
+
+            color: #64748b;
+
+        }
+
+
+        .button-row {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 30px;
+
+        }
+
+
+        .save-button {
+
+            border: none;
+
+            background: #2563eb;
+
+            color: white;
+
+            padding: 12px 24px;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .save-button:hover {
+
+            background: #1d4ed8;
+
+        }
+
+
+        .cancel-button {
+
+            background: #e2e8f0;
+
+            color: #334155;
+
+            text-decoration: none;
+
+            padding: 12px 24px;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+        }
+
+
+        .cancel-button:hover {
+
+            background: #cbd5e1;
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .navbar {
+
+                padding: 18px 20px;
+
+            }
+
+            .navbar h2 {
+
+                font-size: 18px;
+
+            }
+
+            .form-card {
+
+                padding: 20px;
+
+            }
+
+            .button-row {
+
+                flex-direction: column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <h2>
+            🎓 B.Voc Admin
+        </h2>
+
+
+        <a href="/admin/departments"
+           class="back-button">
+
+            ← Departments
+
+        </a>
+
+    </div>
+
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <div class="heading">
+
+            <h1>
+                Edit Department
+            </h1>
+
+            <p>
+                Update the department information below.
+            </p>
+
+        </div>
+
+
+
+        <div class="form-card">
+
+
+            <form method="POST">
+
+
+                <!-- DEPARTMENT NAME -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Department Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="{{ department.get('name', '') }}"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- SHORT CODE -->
+
+                <div class="form-group">
+
+                    <label for="shortCode">
+                        Short Code
+                    </label>
+
+                    <input
+                        type="text"
+                        id="shortCode"
+                        name="shortCode"
+                        value="{{ department.get('shortCode', '') }}"
+                    >
+
+                </div>
+
+
+
+                <!-- TAGLINE -->
+
+                <div class="form-group">
+
+                    <label for="tagline">
+                        Tagline
+                    </label>
+
+                    <input
+                        type="text"
+                        id="tagline"
+                        name="tagline"
+                        value="{{ department.get('tagline', '') }}"
+                    >
+
+                </div>
+
+
+
+                <!-- SHORT DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="shortDescription">
+                        Short Description
+                    </label>
+
+                    <textarea
+                        id="shortDescription"
+                        name="shortDescription"
+                    >{{ department.get('shortDescription', '') }}</textarea>
+
+                </div>
+
+
+
+                <!-- FULL OVERVIEW -->
+
+                <div class="form-group">
+
+                    <label for="fullOverview">
+                        Full Overview
+                    </label>
+
+                    <textarea
+                        id="fullOverview"
+                        name="fullOverview"
+                    >{{ department.get('fullOverview', '') }}</textarea>
+
+                </div>
+
+
+
+                <!-- ELIGIBILITY -->
+
+                <div class="form-group">
+
+                    <label for="eligibility">
+                        Eligibility
+                    </label>
+
+                    <textarea
+                        id="eligibility"
+                        name="eligibility"
+                    >{{ department.get('eligibility', '') }}</textarea>
+
+                </div>
+
+
+
+                <!-- DURATION -->
+
+                <div class="form-group">
+
+                    <label for="duration">
+                        Duration
+                    </label>
+
+                    <input
+                        type="text"
+                        id="duration"
+                        name="duration"
+                        value="{{ department.get('duration', '') }}"
+                    >
+
+                </div>
+
+
+
+                <!-- FIREBASE ID -->
+
+                <div class="form-group">
+
+                    <label>
+                        Firebase Document ID
+                    </label>
+
+                    <input
+                        type="text"
+                        value="{{ department.get('id', '') }}"
+                        class="readonly"
+                        readonly
+                    >
+
+                </div>
+
+
+
+                <!-- BUTTONS -->
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                    >
+
+                        💾 Save Changes
+
+                    </button>
+
+
+                    <a
+                        href="/admin/departments"
+                        class="cancel-button"
+                    >
+
+                        Cancel
+
+                    </a>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

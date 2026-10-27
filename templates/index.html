@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>B.Voc Information Hub</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+          rel="stylesheet">
+
+
+    <!-- Our CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="logo-area">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        <div>
+
+            <div class="logo-title">
+                B.Voc Hub
+            </div>
+
+            <div class="logo-subtitle">
+                Skill Information Portal
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <nav class="nav-links">
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#about">
+            About B.Voc
+        </a>
+
+       <a href="#departments">
+        Departments</a>
+
+        <a href="#placements">
+            Placements
+        </a>
+
+        <a href="#achievements">
+            Achievements
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </nav>
+
+
+    <div class="nav-actions">
+
+    <button class="theme-button">
+        ☾
+    </button>
+
+    <button class="ai-button">
+        🤖 Ask AI Chatbot
+    </button>
+
+</div>
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section id="home" class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-container">
+
+        <!-- LEFT SIDE -->
+        <div class="hero-content">
+
+            <!-- SMALL BADGE -->
+            <div class="hero-badge">
+                ✨ Learn • Grow • Build Your Future
+            </div>
+
+
+            <!-- TITLE -->
+            <h1>
+
+                <span class="hero-purple">
+                    B.Voc
+                </span>
+
+                Information Hub
+
+            </h1>
+
+
+            <!-- DESCRIPTION -->
+            <p class="hero-description">
+
+                Skill-Based Education for Industry-Ready
+                Professionals. Transform your future with
+                60% practical hands-on training, guaranteed
+                internships, and 7 specialized high-growth
+                career tracks.
+
+            </p>
+
+
+            <!-- BUTTONS -->
+            <div class="hero-buttons">
+
+                <a
+                    href="{{ url_for('login_page', type='admin') }}"
+                    class="hero-admin-button"
+                >
+                    🛡️ Admin Login →
+                </a>
+
+
+                <a
+                    href="#departments"
+                    class="hero-explore-button"
+                >
+                    ▦ Explore Departments
+                </a>
+
+            </div>
+
+
+            <!-- SMALL STAT BOXES -->
+            <div class="stats-container">
+
+
+                <!-- BOX 1 -->
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎓
+                    </div>
+
+                    <div class="stat-number">
+                        60<span>%</span>
+                    </div>
+
+                    <h3>
+                        Practical Training
+                    </h3>
+
+                    <p>
+                        Hands-on industry learning
+                    </p>
+
+                </div>
+
+
+                <!-- BOX 2 -->
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📊
+                    </div>
+
+                    <div class="stat-number">
+                        7<span>+</span>
+                    </div>
+
+                    <h3>
+                        Career Tracks
+                    </h3>
+
+                    <p>
+                        High-growth specializations
+                    </p>
+
+                </div>
+
+
+                <!-- BOX 3 -->
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💼
+                    </div>
+
+                    <div class="stat-number">
+                        100<span>%</span>
+                    </div>
+
+                    <h3>
+                        Internship Support
+                    </h3>
+
+                    <p>
+                        Industry exposure
+                    </p>
+
+                </div>
+
+
+                <!-- BOX 4 -->
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📅
+                    </div>
+
+                    <div class="stat-number">
+                        3<span> Years</span>
+                    </div>
+
+                    <h3>
+                        Degree Programme
+                    </h3>
+
+                    <p>
+                        Skill-focused education
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+    
+    
+
+<!-- =====================================================
+     ABOUT B.VOC / DIRECTOR MESSAGE
+===================================================== -->
+
+<section id="about" class="director-section">
+
+    <div class="director-container">
+
+        <!-- LEFT SIDE -->
+        <div class="director-profile">
+
+            <img
+                src="{{ url_for('static', filename='images/director.jpg') }}"
+                alt="Director, B.Voc"
+                class="director-photo"
+            >
+
+            <h2 class="director-name">
+                Dr. MANOJ D PUTHUKULANGARA
+            </h2>
+
+            <p class="director-designation">
+                Director, B.Voc
+            </p>
+
+            <p class="director-college">
+                MES College Marampally
+            </p>
+
+
+            <!-- ABOUT -->
+            <div class="director-about">
+
+                <h3>
+                    About
+                </h3>
+
+                <p>
+                    The College offers seven vocational
+                    programmes such as B. Voc. Logistics
+                    Management, B. Voc. Animation & Graphic
+                    Design, B. Voc. Software Development &
+                    System Administration, B. Voc. Fashion
+                    Designing & Management, B. Voc. Industrial
+                    Instrumentation & Automation, B.Voc Tourism
+                    Administration & Hospitality and B.Voc
+                    Advanced Course in Multi Sports & Fitness
+                    Training.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="director-message">
+
+            <h2 class="vocational-title">
+                VOCATIONAL PROGRAMMES
+            </h2>
+
+            <h3>
+                Message from the Director
+            </h3>
+
+            <p>
+                Welcome to the MES School of B.Voc Studies.
+            </p>
+
+            <p>
+                As we navigate an era of rapid technological
+                advancement, the bridge between formal education
+                and industry requirements has never been more
+                critical. Our B.Voc programs are meticulously
+                designed to move beyond traditional rote learning,
+                focusing instead on competency-based skill
+                development and hands-on technical expertise.
+            </p>
+
+            <p>
+                At MES, we are committed to nurturing
+                “industry-ready” professionals. By integrating
+                rigorous academic curriculum with intensive
+                On-the-Job Training (OJT), we ensure our students
+                are not just graduates, but specialists equipped
+                to excel in leading sectors ranging from
+                Industrial Automation to Digital Media and
+                Animation.
+            </p>
+
+            <p>
+                Our mission is simple: to empower our students
+                with the skills of tomorrow, the ethics of a
+                professional, and the vision of an innovator.
+                We invite you to be part of this transformative
+                journey.
+            </p>
+
+            <p class="director-signature">
+                Dr. Manoj<br>
+                Director, B.Voc<br>
+                MES College, Marampally
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     DEPARTMENTS
+===================================================== -->
+
+<section id="departments" class="departments-section">
+
+    <div class="section-label">
+        EXPLORE
+    </div>
+
+    <h2>
+        B.Voc Departments
+    </h2>
+
+    <p class="section-description">
+        Explore specialized B.Voc programmes designed
+        for today's industry requirements.
+    </p>
+
+
+    <div class="department-grid">
+
+        {% for department in departments %}
+
+        <div class="department-card">
+
+            <!-- Department Image -->
+
+            {% if department.bannerImage.startswith('/src/assets/') %}
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/' + department.bannerImage.split('/')[-1]
+                    ) }}"
+                    alt="{{ department.name }}">
+
+            {% else %}
+
+                <img
+                    src="{{ department.bannerImage }}"
+                    alt="{{ department.name }}">
+
+            {% endif %}
+
+
+            <div class="department-content">
+
+                <!-- Department Code -->
+
+                <div class="department-code">
+                    B.VOC {{ department.shortCode }}
+                </div>
+
+
+                <!-- Department Name -->
+
+                <h3>
+                    {{ department.name }}
+                </h3>
+
+
+                <!-- Description -->
+
+                <p>
+                    {{ department.shortDescription }}
+                </p>
+
+
+                <!-- Explore Button -->
+
+                <a href="{{ url_for(
+                    'department_detail',
+                    department_id=department.id
+                ) }}">
+                    Explore Department →
+                </a>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PLACEMENTS & CAREER
+===================================================== -->
+
+<section id="placements" class="placements-section">
+
+    <div class="placements-heading">
+
+        <div class="section-label">
+            CAREER
+        </div>
+
+        <h2>
+            From Skills to <span>Career</span>
+        </h2>
+
+        <p>
+            B.Voc programmes are designed to connect academic
+            learning with practical experience and real-world
+            career opportunities.
+        </p>
+
+    </div>
+
+
+    <div class="career-stats">
+
+        <div class="career-stat-card">
+            <div class="career-stat-icon">🎓</div>
+            <h3>Skill-Based Degree</h3>
+            <p>
+                Build academic knowledge together with
+                practical professional skills.
+            </p>
+        </div>
+
+
+        <div class="career-stat-card">
+            <div class="career-stat-icon">💼</div>
+            <h3>Career Opportunities</h3>
+            <p>
+                Explore career paths across different
+                specialized B.Voc departments.
+            </p>
+        </div>
+
+
+        <div class="career-stat-card">
+            <div class="career-stat-icon">🏢</div>
+            <h3>Industry Exposure</h3>
+            <p>
+                Develop an understanding of professional
+                environments through practical learning.
+            </p>
+        </div>
+
+
+        <div class="career-stat-card">
+            <div class="career-stat-icon">🚀</div>
+            <h3>Professional Growth</h3>
+            <p>
+                Develop the skills and confidence needed
+                for future employment and higher studies.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="career-bottom">
+
+        <div class="career-message">
+
+            <div class="career-label">
+                YOUR CAREER JOURNEY
+            </div>
+
+            <h3>
+                Learn skills. Gain experience.
+                Build your future.
+            </h3>
+
+            <p>
+                Choose a specialization that matches your
+                interests and explore the career opportunities
+                available after completing your B.Voc programme.
+            </p>
+
+            <a href="#departments">
+                Explore Departments →
+            </a>
+
+        </div>
+
+
+        <div class="career-steps">
+
+            <div class="career-step">
+                <div class="step-number">01</div>
+                <div>
+                    <h4>Learn</h4>
+                    <p>Build your academic foundation.</p>
+                </div>
+            </div>
+
+
+            <div class="career-step">
+                <div class="step-number">02</div>
+                <div>
+                    <h4>Practice</h4>
+                    <p>Develop practical and technical skills.</p>
+                </div>
+            </div>
+
+
+            <div class="career-step">
+                <div class="step-number">03</div>
+                <div>
+                    <h4>Experience</h4>
+                    <p>Apply your knowledge through projects and exposure.</p>
+                </div>
+            </div>
+
+
+            <div class="career-step">
+                <div class="step-number">04</div>
+                <div>
+                    <h4>Grow</h4>
+                    <p>Move towards your chosen career path.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ACHIEVEMENTS
+===================================================== -->
+
+<section id="achievements" class="achievements-section">
+
+    <div class="achievements-heading">
+
+        <div class="section-label">
+            OUR SUCCESS
+        </div>
+
+        <h2>
+            Achievements & <span>Milestones</span>
+        </h2>
+
+        <p>
+            Celebrating the learning, skills and accomplishments
+            developed through B.Voc education.
+        </p>
+
+    </div>
+
+
+    <div class="achievement-grid">
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🏆
+            </div>
+
+            <div class="achievement-content">
+                <span class="achievement-tag">
+                    EXCELLENCE
+                </span>
+
+                <h3>
+                    Skill Development
+                </h3>
+
+                <p>
+                    Students develop practical and technical
+                    skills through hands-on academic learning.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                💡
+            </div>
+
+            <div class="achievement-content">
+                <span class="achievement-tag">
+                    INNOVATION
+                </span>
+
+                <h3>
+                    Project-Based Learning
+                </h3>
+
+                <p>
+                    Practical projects help students apply
+                    classroom knowledge to real-world problems.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🎯
+            </div>
+
+            <div class="achievement-content">
+                <span class="achievement-tag">
+                    CAREER
+                </span>
+
+                <h3>
+                    Industry Readiness
+                </h3>
+
+                <p>
+                    Specialized training helps students prepare
+                    for professional career opportunities.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="achievement-card">
+
+            <div class="achievement-icon">
+                🚀
+            </div>
+
+            <div class="achievement-content">
+                <span class="achievement-tag">
+                    GROWTH
+                </span>
+
+                <h3>
+                    Future Opportunities
+                </h3>
+
+                <p>
+                    Build a strong foundation for employment,
+                    entrepreneurship and higher studies.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+   
+
+
+</section>
+
+
+
+
+<!-- CONTACT US SECTION -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+
+        <!-- Left: College contact information -->
+        <div class="contact-info">
+            <h2>Get in Touch</h2>
+
+            <div class="contact-details">
+                <div class="contact-location-icon">📍</div>
+
+                <div class="contact-address">
+                    <h3>M.E.S. College Marampally</h3>
+
+                    <p>
+                        MES College Marampally<br>
+                        North Vazhakulam, Aluva<br>
+                        Ernakulam (Dist)<br>
+                        Kerala, India<br>
+                        Pin 683 105.
+                    </p>
+
+                    <p>
+                        Call Us:
+                        <a href="tel:+914842677104">+91 484 2677104</a>
+                    </p>
+
+                    <p>Email:</p>
+                    <a href="mailto:mail@mesmarampally.org">
+                        mail@mesmarampally.org
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Contact form -->
+        <div class="contact-form-area">
+            <h2>Send us a message</h2>
+
+            <form class="contact-form" action="#" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input
+                            type="text"
+                            id="first-name"
+                            name="first_name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input
+                            type="text"
+                            id="last-name"
+                            name="last_name"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Contact Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                        >
+                    </div>
+                </div>
+
+                <div class="form-group message-group">
+                    <label for="message">Message</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="5"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-submit">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     AI CHATBOT
+===================================================== -->
+
+<div id="chatbot-window" class="chatbot-window">
+
+    <!-- Chatbot Header -->
+
+    <div class="chatbot-header">
+
+        <div class="chatbot-title">
+
+            <div class="chatbot-icon">
+                🤖
+            </div>
+
+            <div>
+                <strong>B.Voc AI Advisor</strong>
+
+                <small>
+                    Online • Ready to help
+                </small>
+            </div>
+
+        </div>
+
+        <button id="close-chatbot" class="chatbot-close">
+            ×
+        </button>
+
+    </div>
+
+
+    <!-- Chat Messages -->
+
+    <div id="chat-messages" class="chat-messages">
+
+        <div class="bot-message">
+
+            <div class="message-icon">
+                🤖
+            </div>
+
+            <div class="message-content">
+
+                Hello! 👋
+
+                <br><br>
+
+                I'm your <strong>B.Voc AI Academic Advisor</strong>.
+
+                <br><br>
+
+                You can ask me about departments, syllabus,
+                eligibility, placements, faculty and careers.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Quick Replies -->
+
+    <div id="quick-replies" class="quick-replies">
+
+        <button class="quick-reply">
+            What is B.Voc?
+        </button>
+
+        <button class="quick-reply">
+            List all 7 departments
+        </button>
+
+        <button class="quick-reply">
+            Placement details
+        </button>
+
+    </div>
+
+
+    <!-- Chat Input -->
+
+    <div class="chat-input-area">
+
+        <input
+            type="text"
+            id="chat-input"
+            placeholder="Ask about B.Voc..."
+            autocomplete="off">
+
+        <button id="send-chat" class="send-chat">
+            ➤
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-logo">
+        B.Voc Information Hub
+    </div>
+
+    <p>
+        Skill-Based Education for Industry-Ready Professionals.
+    </p>
+
+
+    <div class="footer-bottom">
+
+        © 2026 B.Voc Information Hub
+
+    </div>
+
+</footer>
+
+<script>
+
+    // =====================================================
+    // AI CHATBOT
+    // =====================================================
+
+    const chatbotWindow = document.getElementById("chatbot-window");
+    const closeChatbot = document.getElementById("close-chatbot");
+    const chatInput = document.getElementById("chat-input");
+    const sendChat = document.getElementById("send-chat");
+    const chatMessages = document.getElementById("chat-messages");
+    const quickReplies = document.getElementById("quick-replies");
+
+
+    // =====================================================
+    // OPEN CHATBOT
+    // =====================================================
+
+    document.querySelectorAll(".ai-button, .secondary-button").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            chatbotWindow.classList.add("active");
+
+            chatInput.focus();
+
+        });
+
+    });
+
+
+    // =====================================================
+    // CLOSE CHATBOT
+    // =====================================================
+
+    closeChatbot.addEventListener("click", () => {
+
+        chatbotWindow.classList.remove("active");
+
+    });
+
+
+    // =====================================================
+    // ADD USER MESSAGE
+    // =====================================================
+
+    function addUserMessage(message) {
+
+        const messageDiv = document.createElement("div");
+
+        messageDiv.className = "user-message";
+
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                ${escapeHtml(message)}
+            </div>
+        `;
+
+        chatMessages.appendChild(messageDiv);
+
+        scrollToBottom();
+
+    }
+
+
+    // =====================================================
+    // ADD BOT MESSAGE
+    // =====================================================
+
+    function addBotMessage(message) {
+
+        const messageDiv = document.createElement("div");
+
+        messageDiv.className = "bot-message";
+
+        messageDiv.innerHTML = `
+            <div class="message-icon">
+                🤖
+            </div>
+
+            <div class="message-content">
+                ${formatBotMessage(message)}
+            </div>
+        `;
+
+        chatMessages.appendChild(messageDiv);
+
+        scrollToBottom();
+
+    }
+
+
+    // =====================================================
+    // FORMAT BOT RESPONSE
+    // =====================================================
+
+    function formatBotMessage(message) {
+
+        let safeMessage = escapeHtml(message);
+
+        // Bold text: **text**
+        safeMessage = safeMessage.replace(
+            /\*\*(.*?)\*\*/g,
+            "<strong>$1</strong>"
+        );
+
+        // Convert bullet points
+        safeMessage = safeMessage.replace(
+            /^• (.*)$/gm,
+            "• $1"
+        );
+
+        // Convert new lines
+        safeMessage = safeMessage.replace(/\n/g, "<br>");
+
+        return safeMessage;
+
+    }
+
+
+    // =====================================================
+    // SECURITY
+    // =====================================================
+
+    function escapeHtml(text) {
+
+        const div = document.createElement("div");
+
+        div.textContent = text;
+
+        return div.innerHTML;
+
+    }
+
+
+    // =====================================================
+    // SCROLL TO BOTTOM
+    // =====================================================
+
+    function scrollToBottom() {
+
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    }
+
+
+    // =====================================================
+    // SHOW TYPING MESSAGE
+    // =====================================================
+
+    function showTyping() {
+
+        const typing = document.createElement("div");
+
+        typing.id = "typing-message";
+
+        typing.className = "bot-message";
+
+        typing.innerHTML = `
+            <div class="message-icon">
+                🤖
+            </div>
+
+            <div class="message-content typing">
+                Thinking...
+            </div>
+        `;
+
+        chatMessages.appendChild(typing);
+
+        scrollToBottom();
+
+    }
+
+
+    // =====================================================
+    // REMOVE TYPING MESSAGE
+    // =====================================================
+
+    function removeTyping() {
+
+        const typing = document.getElementById("typing-message");
+
+        if (typing) {
+
+            typing.remove();
+
+        }
+
+    }
+
+
+    // =====================================================
+    // SEND MESSAGE TO FLASK
+    // =====================================================
+
+    async function sendMessage(message) {
+
+        message = message.trim();
+
+        if (!message) {
+
+            return;
+
+        }
+
+
+        // Add user's message
+
+        addUserMessage(message);
+
+
+        // Clear input
+
+        chatInput.value = "";
+
+
+        // Remove quick replies while processing
+
+        quickReplies.innerHTML = "";
+
+
+        // Show typing
+
+        showTyping();
+
+
+        try {
+
+            const response = await fetch("/api/chat", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    message: message
+                })
+
+            });
+
+
+            const data = await response.json();
+
+
+            removeTyping();
+
+
+            if (response.ok) {
+
+                addBotMessage(data.answer);
+
+
+                // Add quick replies returned by chatbot
+
+                if (data.quick_replies &&
+                    data.quick_replies.length > 0) {
+
+                    data.quick_replies.forEach(reply => {
+
+                        const button =
+                            document.createElement("button");
+
+                        button.className = "quick-reply";
+
+                        button.textContent = reply;
+
+                        button.addEventListener(
+                            "click",
+                            () => sendMessage(reply)
+                        );
+
+                        quickReplies.appendChild(button);
+
+                    });
+
+                }
+
+            } else {
+
+                addBotMessage(
+                    "Sorry, something went wrong. Please try again."
+                );
+
+            }
+
+        }
+
+        catch (error) {
+
+            removeTyping();
+
+            console.error("Chatbot error:", error);
+
+            addBotMessage(
+                "I couldn't connect to the chatbot server. Please make sure Flask is running."
+            );
+
+        }
+
+    }
+
+
+    // =====================================================
+    // SEND BUTTON
+    // =====================================================
+
+    sendChat.addEventListener("click", () => {
+
+        sendMessage(chatInput.value);
+
+    });
+
+
+    // =====================================================
+    // ENTER KEY
+    // =====================================================
+
+    chatInput.addEventListener("keydown", (event) => {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            sendMessage(chatInput.value);
+
+        }
+
+    });
+
+
+    // =====================================================
+    // QUICK REPLIES
+    // =====================================================
+
+    document.querySelectorAll(".quick-reply").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            sendMessage(button.textContent);
+
+        });
+
+    });
+
+    // =====================================================
+// DARK / LIGHT MODE
+// =====================================================
+
+const themeButton = document.querySelector(".theme-button");
+
+themeButton.addEventListener("click", () => {
+
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        themeButton.textContent = "☀️";
+        localStorage.setItem("theme", "dark");
+    } else {
+        themeButton.textContent = "☾";
+        localStorage.setItem("theme", "light");
+    }
+
+});
+
+
+// Remember user's theme
+
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeButton.textContent = "☀️";
+}
+
+</script>
+
+
+</body>
+
+</html>

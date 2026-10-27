@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Departments | B.Voc Admin</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #0f172a;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #0f172a;
+            color: white;
+            padding: 18px 40px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            font-size: 22px;
+        }
+
+        .back-button {
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+
+            padding: 10px 18px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .back-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* MAIN CONTAINER */
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* HEADING */
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+            font-size: 16px;
+        }
+
+        /* GRID */
+
+        .department-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        /* CARD */
+
+        .department-card {
+            background: white;
+
+            padding: 28px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.08);
+
+            transition: 0.2s;
+        }
+
+        .department-card:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* NUMBER */
+
+        .department-number {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 12px;
+        }
+
+        /* SHORT CODE */
+
+        .short-code {
+            display: inline-block;
+
+            background: #dbeafe;
+
+            color: #1d4ed8;
+
+            padding: 6px 12px;
+
+            border-radius: 6px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+        /* NAME */
+
+        .department-card h2 {
+            font-size: 21px;
+
+            line-height: 1.4;
+
+            margin-bottom: 12px;
+
+            color: #0f172a;
+        }
+
+        /* DESCRIPTION */
+
+        .description {
+            color: #64748b;
+
+            line-height: 1.7;
+
+            font-size: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        /* FIREBASE ID */
+
+        .department-id {
+            padding-top: 15px;
+
+            border-top: 1px solid #e2e8f0;
+
+            font-size: 12px;
+
+            color: #94a3b8;
+
+            word-break: break-all;
+        }
+
+        /* EDIT BUTTON */
+
+        .edit-button {
+            display: inline-block;
+
+            margin-top: 18px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 10px 16px;
+
+            border-radius: 7px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+        .edit-button:hover {
+            background: #1d4ed8;
+        }
+
+        /* EMPTY */
+
+        .empty {
+            background: white;
+
+            padding: 40px;
+
+            text-align: center;
+
+            border-radius: 16px;
+
+            color: #64748b;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .department-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 18px 20px;
+            }
+
+            .navbar h2 {
+                font-size: 18px;
+            }
+
+            .container {
+                margin: 25px auto;
+            }
+
+            .page-heading h1 {
+                font-size: 27px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <div class="navbar">
+
+        <h2>
+            🎓 B.Voc Admin
+        </h2>
+
+        <a href="/admin"
+           class="back-button">
+
+            ← Admin Dashboard
+
+        </a>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="container">
+
+
+        <div class="page-heading">
+
+            <h1>
+                Manage Departments
+            </h1>
+
+            <p>
+                View and manage all B.Voc departments stored in Firebase.
+            </p>
+
+        </div>
+
+
+        {% if departments %}
+
+
+        <div class="department-grid">
+
+
+            {% for department in departments %}
+
+
+            <div class="department-card">
+
+
+                <div class="department-number">
+
+                    Department {{ loop.index }}
+
+                </div>
+
+
+                <span class="short-code">
+
+                    {{ department.get("shortCode", "B.Voc") }}
+
+                </span>
+
+
+                <h2>
+
+                    {{ department.get("name", "Department") }}
+
+                </h2>
+
+
+                <p class="description">
+
+                    {{ department.get(
+                        "shortDescription",
+                        "No description available."
+                    ) }}
+
+                </p>
+
+
+                <p class="department-id">
+
+                    Firebase ID:
+                    {{ department.get("id", "") }}
+
+                </p>
+
+
+                <a
+                    href="{{ url_for(
+                        'edit_department',
+                        department_id=department.get('id', '')
+                    ) }}"
+                    class="edit-button"
+                >
+
+                    ✏️ Edit Department
+
+                </a>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <div class="empty">
+
+            <h2>
+                No Departments Found
+            </h2>
+
+            <p style="margin-top: 10px;">
+
+                There are currently no departments
+                stored in Firebase.
+
+            </p>
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</body>
+
+</html>

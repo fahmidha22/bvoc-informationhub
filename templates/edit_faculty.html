@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Manage Faculty - {{ department.name }}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        body {
+            background: #020617;
+            color: #f8fafc;
+        }
+
+        .faculty-edit-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .faculty-edit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            color: #0f172a;
+        }
+
+        .faculty-edit-card h1 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        .department-code {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .faculty-member {
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .faculty-member h3 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .faculty-input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+            color: #0f172a;
+        }
+
+        .faculty-input:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .remove-btn {
+            margin-top: 5px;
+            padding: 9px 15px;
+            border: none;
+            border-radius: 7px;
+            background: #ef4444;
+            color: white;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background: #dc2626;
+        }
+
+        .add-btn {
+            padding: 11px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        .add-btn:hover {
+            background: #15803d;
+        }
+
+        .save-btn {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 25px;
+        }
+
+        .save-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .empty-message {
+            color: #64748b;
+            font-style: italic;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="faculty-edit-container">
+
+    <a href="/admin/faculty" class="back-btn">
+        ← Back to Faculty Management
+    </a>
+
+
+    <div class="faculty-edit-card">
+
+        <h1>Manage Faculty</h1>
+
+        <div class="department-code">
+            {{ department.name }} — {{ department.shortCode }}
+        </div>
+
+
+        <form method="POST">
+
+            <div id="faculty-container">
+
+
+                {% for member in faculty %}
+
+                <div class="faculty-member">
+
+                    <h3>Faculty Member</h3>
+
+
+                    <div class="form-group">
+
+                        <label>Name</label>
+
+                        <input
+                            type="text"
+                            name="faculty_name"
+                            value="{{ member.name }}"
+                            class="faculty-input"
+                            placeholder="Faculty name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Experience</label>
+
+                        <input
+                            type="text"
+                            name="faculty_experience"
+                            value="{{ member.experience }}"
+                            class="faculty-input"
+                            placeholder="Example: 10+ Years"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+                        <input
+                            type="text"
+                            name="faculty_email"
+                            value="{{ member.email }}"
+                            class="faculty-input"
+                            placeholder="Faculty email"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Designation</label>
+
+                        <input
+                            type="text"
+                            name="faculty_designation"
+                            value="{{ member.designation }}"
+                            class="faculty-input"
+                            placeholder="Designation"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Qualification</label>
+
+                        <input
+                            type="text"
+                            name="faculty_qualification"
+                            value="{{ member.qualification }}"
+                            class="faculty-input"
+                            placeholder="Qualification"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Specialization</label>
+
+                        <input
+                            type="text"
+                            name="faculty_specialization"
+                            value="{{ member.specialization }}"
+                            class="faculty-input"
+                            placeholder="Specialization"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Image URL</label>
+
+                        <input
+                            type="text"
+                            name="faculty_image"
+                            value="{{ member.image }}"
+                            class="faculty-input"
+                            placeholder="Image URL"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Faculty ID</label>
+
+                        <input
+                            type="text"
+                            name="faculty_id"
+                            value="{{ member.id }}"
+                            class="faculty-input"
+                            placeholder="Faculty ID"
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="remove-btn"
+                        onclick="removeFaculty(this)"
+                    >
+                        Remove Faculty
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+
+
+            <button
+                type="button"
+                class="add-btn"
+                onclick="addFaculty()"
+            >
+                + Add Faculty Member
+            </button>
+
+
+            <br>
+
+
+            <button
+                type="submit"
+                class="save-btn"
+            >
+                Save Faculty
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function addFaculty() {
+
+    const container =
+        document.getElementById("faculty-container");
+
+
+    const member =
+        document.createElement("div");
+
+
+    member.className = "faculty-member";
+
+
+    member.innerHTML = `
+
+        <h3>New Faculty Member</h3>
+
+        <div class="form-group">
+            <label>Name</label>
+            <input
+                type="text"
+                name="faculty_name"
+                class="faculty-input"
+                placeholder="Faculty name"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Experience</label>
+            <input
+                type="text"
+                name="faculty_experience"
+                class="faculty-input"
+                placeholder="Example: 10+ Years"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input
+                type="text"
+                name="faculty_email"
+                class="faculty-input"
+                placeholder="Faculty email"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Designation</label>
+            <input
+                type="text"
+                name="faculty_designation"
+                class="faculty-input"
+                placeholder="Designation"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Qualification</label>
+            <input
+                type="text"
+                name="faculty_qualification"
+                class="faculty-input"
+                placeholder="Qualification"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Specialization</label>
+            <input
+                type="text"
+                name="faculty_specialization"
+                class="faculty-input"
+                placeholder="Specialization"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Image URL</label>
+            <input
+                type="text"
+                name="faculty_image"
+                class="faculty-input"
+                placeholder="Image URL"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Faculty ID</label>
+            <input
+                type="text"
+                name="faculty_id"
+                class="faculty-input"
+                placeholder="Faculty ID"
+            >
+        </div>
+
+        <button
+            type="button"
+            class="remove-btn"
+            onclick="removeFaculty(this)"
+        >
+            Remove Faculty
+        </button>
+    `;
+
+
+    container.appendChild(member);
+}
+
+
+function removeFaculty(button) {
+
+    const member =
+        button.parentElement;
+
+    member.remove();
+}
+
+</script>
+
+</body>
+
+</html>

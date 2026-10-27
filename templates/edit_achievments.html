@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Manage Achievements - {{ department.name }}
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        body {
+            background: #020617;
+            color: #f8fafc;
+        }
+
+        .achievement-edit-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .achievement-edit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            color: #0f172a;
+        }
+
+        .achievement-edit-card h1 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        .department-code {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .achievement-item {
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .achievement-item h3 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .achievement-input,
+        .achievement-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+            color: #0f172a;
+        }
+
+        .achievement-textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .achievement-input:focus,
+        .achievement-textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .remove-btn {
+            margin-top: 5px;
+            padding: 9px 15px;
+            border: none;
+            border-radius: 7px;
+            background: #ef4444;
+            color: white;
+            cursor: pointer;
+        }
+
+        .remove-btn:hover {
+            background: #dc2626;
+        }
+
+        .add-btn {
+            padding: 11px 18px;
+            border: none;
+            border-radius: 8px;
+            background: #16a34a;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+
+        .add-btn:hover {
+            background: #15803d;
+        }
+
+        .save-btn {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 25px;
+        }
+
+        .save-btn:hover {
+            background: #1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="achievement-edit-container">
+
+    <a href="/admin/achievements"
+       class="back-btn">
+        ← Back to Achievements Management
+    </a>
+
+
+    <div class="achievement-edit-card">
+
+        <h1>Manage Achievements</h1>
+
+        <div class="department-code">
+            {{ department.name }} — {{ department.shortCode }}
+        </div>
+
+
+        <form method="POST">
+
+            <div id="achievement-container">
+
+
+                {% for achievement in achievements %}
+
+                <div class="achievement-item">
+
+                    <h3>Achievement</h3>
+
+
+                    <div class="form-group">
+
+                        <label>Title</label>
+
+                        <input
+                            type="text"
+                            name="achievement_title"
+                            value="{{ achievement.title }}"
+                            class="achievement-input"
+                            placeholder="Achievement title"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Category</label>
+
+                        <input
+                            type="text"
+                            name="achievement_category"
+                            value="{{ achievement.category }}"
+                            class="achievement-input"
+                            placeholder="Example: Academic"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Year</label>
+
+                        <input
+                            type="text"
+                            name="achievement_year"
+                            value="{{ achievement.year }}"
+                            class="achievement-input"
+                            placeholder="Example: 2025"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Badge</label>
+
+                        <input
+                            type="text"
+                            name="achievement_badge"
+                            value="{{ achievement.badge }}"
+                            class="achievement-input"
+                            placeholder="Example: National Winner"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Student Name</label>
+
+                        <input
+                            type="text"
+                            name="achievement_student"
+                            value="{{ achievement.studentName }}"
+                            class="achievement-input"
+                            placeholder="Student name or team"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>Description</label>
+
+                        <textarea
+                            name="achievement_description"
+                            class="achievement-textarea"
+                            placeholder="Achievement description"
+                        >{{ achievement.description }}</textarea>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="remove-btn"
+                        onclick="removeAchievement(this)"
+                    >
+                        Remove Achievement
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+
+            </div>
+
+
+            <button
+                type="button"
+                class="add-btn"
+                onclick="addAchievement()"
+            >
+                + Add Achievement
+            </button>
+
+
+            <br>
+
+
+            <button
+                type="submit"
+                class="save-btn"
+            >
+                Save Achievements
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function addAchievement() {
+
+    const container =
+        document.getElementById("achievement-container");
+
+
+    const achievement =
+        document.createElement("div");
+
+
+    achievement.className =
+        "achievement-item";
+
+
+    achievement.innerHTML = `
+
+        <h3>New Achievement</h3>
+
+        <div class="form-group">
+            <label>Title</label>
+
+            <input
+                type="text"
+                name="achievement_title"
+                class="achievement-input"
+                placeholder="Achievement title"
+            >
+        </div>
+
+
+        <div class="form-group">
+            <label>Category</label>
+
+            <input
+                type="text"
+                name="achievement_category"
+                class="achievement-input"
+                placeholder="Example: Academic"
+            >
+        </div>
+
+
+        <div class="form-group">
+            <label>Year</label>
+
+            <input
+                type="text"
+                name="achievement_year"
+                class="achievement-input"
+                placeholder="Example: 2025"
+            >
+        </div>
+
+
+        <div class="form-group">
+            <label>Badge</label>
+
+            <input
+                type="text"
+                name="achievement_badge"
+                class="achievement-input"
+                placeholder="Example: National Winner"
+            >
+        </div>
+
+
+        <div class="form-group">
+            <label>Student Name</label>
+
+            <input
+                type="text"
+                name="achievement_student"
+                class="achievement-input"
+                placeholder="Student name or team"
+            >
+        </div>
+
+
+        <div class="form-group">
+            <label>Description</label>
+
+            <textarea
+                name="achievement_description"
+                class="achievement-textarea"
+                placeholder="Achievement description"
+            ></textarea>
+        </div>
+
+
+        <button
+            type="button"
+            class="remove-btn"
+            onclick="removeAchievement(this)"
+        >
+            Remove Achievement
+        </button>
+    `;
+
+
+    container.appendChild(achievement);
+}
+
+
+function removeAchievement(button) {
+
+    const achievement =
+        button.parentElement;
+
+    achievement.remove();
+}
+
+</script>
+
+</body>
+
+</html>

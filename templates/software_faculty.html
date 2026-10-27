@@ -1,0 +1,170 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Development Faculty</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 7%;
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #111;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .page-header h2 {
+            color: #b94742;
+            font-size: 25px;
+            margin: 0;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: #003b5c;
+            font-size: 15px;
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 210px);
+            justify-content: center;
+            gap: 16px 30px;
+        }
+
+        .faculty-card {
+            border-top: 2px solid #b94742;
+            border-bottom: 2px solid #b94742;
+            border-radius: 11px;
+            overflow: hidden;
+            text-align: center;
+            background: #f8f8f8;
+            padding-bottom: 10px;
+        }
+
+        .faculty-photo {
+            width: 100%;
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+            color: #aaa;
+        }
+
+        .faculty-photo svg {
+            width: 120px;
+            height: 150px;
+            fill: #d8d8d8;
+        }
+
+        .faculty-info {
+            padding: 12px 8px 5px;
+        }
+
+        .faculty-info h3 {
+            font-size: 14px;
+            margin: 5px 0 8px;
+        }
+
+        .faculty-info p {
+            font-size: 14px;
+            margin: 7px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .view-button {
+            display: inline-block;
+            width: 105px;
+            margin-top: 12px;
+            padding: 8px;
+            border-radius: 8px;
+            background: #b94742;
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .view-button:hover {
+            background: #963630;
+        }
+
+        @media (max-width: 800px) {
+            .faculty-grid {
+                grid-template-columns: repeat(2, 210px);
+                gap: 18px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 18px;
+            }
+
+            .faculty-grid {
+                grid-template-columns: minmax(0, 280px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="page-header">
+        <h2>Faculty</h2>
+        <a href="{{ url_for('department_detail', department_id='1') }}"
+           class="back-link">
+            &laquo; Back
+        </a>
+    </header>
+
+    <main class="faculty-grid">
+
+        {% for member in faculty %}
+        <article class="faculty-card">
+
+            {% if member.image %}
+    <img src="{{ member.image }}"
+         alt="{{ member.name }}"
+         style="width:100%; height:210px; object-fit:cover;">
+{% else %}
+                    <svg viewBox="0 0 120 150" aria-hidden="true">
+                        <circle cx="60" cy="42" r="29"/>
+                        <path d="M15 150 Q17 90 42 86 L60 105 L78 86 Q103 90 105 150 Z"/>
+                    </svg>
+                {% endif %}
+            </div>
+
+            <div class="faculty-info">
+                <h3>{{ member.name }}</h3>
+                <p>{{ member.designation }}</p>
+                <p>{{ member.email }}</p>
+
+                <a href="{{ url_for('software_faculty_detail', faculty_id=member.id) }}"
+                   class="view-button">
+                    View
+                </a>
+            </div>
+
+        </article>
+        {% endfor %}
+
+    </main>
+
+</body>
+</html>
+```

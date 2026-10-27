@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Placements</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        body {
+            background: #f8fafc;
+            color: #0f172a;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .header p {
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            background: #0f172a;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 11px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .partner-row,
+        .recruiter-card,
+        .role-row {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+        }
+
+        .partner-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .partner-row input {
+            flex: 1;
+        }
+
+        .recruiter-card h3 {
+            margin-top: 0;
+        }
+
+        .recruiter-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .roles-section {
+            margin-top: 20px;
+        }
+
+        .role-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .role-row input {
+            flex: 1;
+        }
+
+        .btn {
+            border: none;
+            padding: 9px 15px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .add-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .remove-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .save-btn {
+            background: #2563eb;
+            color: white;
+            padding: 13px 25px;
+            font-size: 16px;
+        }
+
+        .save-area {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 700px) {
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recruiter-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partner-row,
+            .role-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <div>
+            <h1>📊 Edit Placements</h1>
+
+            <p>
+                {{ department.get('name', 'B.Voc Department') }}
+            </p>
+        </div>
+
+        <a href="{{ url_for('admin_placements') }}" class="back-btn">
+            ← Back
+        </a>
+
+    </div>
+
+
+    <form method="POST">
+
+
+        <!-- ============================= -->
+        <!-- PLACEMENT STATISTICS -->
+        <!-- ============================= -->
+
+        <div class="section">
+
+            <h2>📈 Placement Statistics</h2>
+
+            <div class="stats-grid">
+
+                <div class="form-group">
+
+                    <label>Average Package</label>
+
+                    <input
+                        type="text"
+                        name="averagePackage"
+                        value="{{ placements.get('averagePackage', '') }}"
+                        placeholder="Example: ₹6.5 LPA"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Highest Package</label>
+
+                    <input
+                        type="text"
+                        name="highestPackage"
+                        value="{{ placements.get('highestPackage', '') }}"
+                        placeholder="Example: ₹14.8 LPA"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Placement Rate</label>
+
+                    <input
+                        type="text"
+                        name="placementRate"
+                        value="{{ placements.get('placementRate', '') }}"
+                        placeholder="Example: 96%"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- INTERNSHIP PARTNERS -->
+        <!-- ============================= -->
+
+        <div class="section">
+
+            <h2>🤝 Internship Partners</h2>
+
+            <div id="partners-container">
+
+                {% for partner in placements.get('internshipPartners', []) %}
+
+                <div class="partner-row">
+
+                    <input
+                        type="text"
+                        name="internship_partner"
+                        value="{{ partner }}"
+                        placeholder="Company / Organisation"
+                    >
+
+                    <button
+                        type="button"
+                        class="btn remove-btn"
+                        onclick="removeElement(this)"
+                    >
+                        Remove
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn add-btn"
+                onclick="addPartner()"
+            >
+                + Add Internship Partner
+            </button>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- RECRUITERS -->
+        <!-- ============================= -->
+
+        <div class="section">
+
+            <h2>🏢 Recruiters</h2>
+
+            <div id="recruiters-container">
+
+                {% for recruiter in placements.get('recruiters', []) %}
+
+                <div class="recruiter-card">
+
+                    <h3>Recruiter</h3>
+
+                    <div class="recruiter-grid">
+
+                        <div class="form-group">
+
+                            <label>Company Name</label>
+
+                            <input
+                                type="text"
+                                name="recruiter_name"
+                                value="{{ recruiter.get('name', '') }}"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Logo Text</label>
+
+                            <input
+                                type="text"
+                                name="recruiter_logoText"
+                                value="{{ recruiter.get('logoText', '') }}"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>Logo Color</label>
+
+                            <input
+                                type="text"
+                                name="recruiter_logoColor"
+                                value="{{ recruiter.get('logoColor', '') }}"
+                                placeholder="#FF9900"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="roles-section">
+
+                        <h4>Roles</h4>
+
+                        <div class="roles-container">
+
+                            {% for role in recruiter.get('roles', []) %}
+
+                            <div class="role-row">
+                               <input
+                                    type="text"
+                                    name="recruiter_role_{{ loop.index0 }}"
+                                    value="{{ role }}"
+                                    placeholder="Job Role" >
+                                <button
+                                    type="button"
+                                    class="btn remove-btn"
+                                    onclick="removeElement(this)"
+                                >
+                                    Remove
+                                </button>
+
+                            </div>
+
+                            {% endfor %}
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="btn add-btn"
+                            onclick="addRole(this)"
+                        >
+                            + Add Role
+                        </button>
+
+                    </div>
+
+
+                    <br>
+
+                    <button
+                        type="button"
+                        class="btn remove-btn"
+                        onclick="removeElement(this.closest('.recruiter-card'))"
+                    >
+                        Remove Recruiter
+                    </button>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+            <button
+                type="button"
+                class="btn add-btn"
+                onclick="addRecruiter()"
+            >
+                + Add Recruiter
+            </button>
+
+        </div>
+
+
+        <!-- ============================= -->
+        <!-- SAVE -->
+        <!-- ============================= -->
+
+        <div class="save-area">
+
+            <button
+                type="submit"
+                class="btn save-btn"
+            >
+                💾 Save Placement Information
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+
+function removeElement(element) {
+    element.remove();
+}
+function addPartner() {
+
+    const container =
+        document.getElementById("partners-container");
+
+    const row =
+        document.createElement("div");
+
+    row.className = "partner-row";
+
+    row.innerHTML = `
+        <input
+            type="text"
+            name="internship_partner"
+            placeholder="Company / Organisation" >
+
+        <button
+            type="button"
+            class="btn remove-btn"
+            onclick="removeElement(this)"
+        >
+            Remove
+        </button>
+    `;
+
+    container.appendChild(row);
+}
+
+
+function addRecruiter() {
+
+    const container =
+        document.getElementById("recruiters-container");
+
+    const card =
+        document.createElement("div");
+
+    card.className = "recruiter-card";
+
+    card.innerHTML = `
+        <h3>Recruiter</h3>
+
+        <div class="recruiter-grid">
+
+            <div class="form-group">
+
+                <label>Company Name</label>
+
+                <input
+                    type="text"
+                    name="recruiter_name"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Logo Text</label>
+
+                <input
+                    type="text"
+                    name="recruiter_logoText"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Logo Color</label>
+
+                <input
+                    type="text"
+                    name="recruiter_logoColor"
+                    placeholder="#000000"
+                >
+
+            </div>
+
+        </div>
+
+        <div class="roles-section">
+
+            <h4>Roles</h4>
+
+            <div class="roles-container"></div>
+
+            <button
+                type="button"
+                class="btn add-btn"
+                onclick="addRole(this)"
+            >
+                + Add Role
+            </button>
+
+        </div>
+
+        <br>
+
+        <button
+            type="button"
+            class="btn remove-btn"
+            onclick="removeElement(this.closest('.recruiter-card'))"
+        >
+            Remove Recruiter
+        </button>
+    `;
+
+    container.appendChild(card);
+}
+
+function addRole(button) {
+
+    const rolesContainer = button.previousElementSibling;
+
+    const row = document.createElement("div");
+
+    row.className = "role-row";
+
+    row.innerHTML = `
+        <input
+            type="text"
+            name="recruiter_role"
+            placeholder="Job Role"
+        >
+
+        <button
+            type="button"
+            class="btn remove-btn"
+            onclick="removeElement(this)"
+        >
+            Remove
+        </button>
+    `;
+
+    rolesContainer.appendChild(row);
+}
+
+</script>
+
+</body>
+</html>

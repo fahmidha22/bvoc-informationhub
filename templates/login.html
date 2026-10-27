@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login | B.Voc Information Hub</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4c1d95,
+                    #7c3aed,
+                    #a855f7
+                );
+
+            padding: 20px;
+
+        }
+
+        .auth-container {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.25);
+
+        }
+
+        .logo {
+
+            text-align: center;
+
+            font-size: 42px;
+
+            margin-bottom: 12px;
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            color: #1e1b4b;
+
+            margin-bottom: 8px;
+
+            font-size: 28px;
+
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+
+            line-height: 1.5;
+
+        }
+
+        .login-type {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            padding: 10px;
+
+            border-radius: 10px;
+
+            background: #f3e8ff;
+
+            color: #6b21a8;
+
+            font-weight: 600;
+
+            font-size: 14px;
+
+        }
+
+        .form-group {
+
+            margin-bottom: 18px;
+
+        }
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-weight: 600;
+
+            color: #334155;
+
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border:
+                1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+
+        }
+
+        input:focus {
+
+            border-color: #7c3aed;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(124, 58, 237, 0.12);
+
+        }
+
+        .login-button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6d28d9,
+                    #9333ea
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            margin-top: 8px;
+
+            transition: 0.2s;
+
+        }
+
+        .login-button:hover {
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 8px 20px
+                rgba(124, 58, 237, 0.3);
+
+        }
+
+        #message {
+
+            margin-top: 18px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+            min-height: 20px;
+
+        }
+
+        .back-link {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+        }
+
+        .back-link a {
+
+            color: #64748b;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+        .back-link a:hover {
+
+            color: #7c3aed;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="auth-container">
+
+
+    <!-- Admin Icon -->
+
+    <div class="logo">
+        🛡️
+    </div>
+
+
+    <!-- Title -->
+
+    <h1>
+        Admin Login
+    </h1>
+
+
+    <!-- Description -->
+
+    <p class="subtitle">
+        Login to manage the B.Voc Information Hub.
+    </p>
+
+
+    <!-- Access Type -->
+
+    <div class="login-type">
+        🛡️ Administrator Access
+    </div>
+
+
+    <!-- Login Form -->
+
+    <form id="login-form">
+
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your admin email"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+            >
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-button"
+        >
+            🛡️ Login as Admin
+        </button>
+
+
+    </form>
+
+
+    <!-- Login Message -->
+
+    <div id="message"></div>
+
+
+    <!-- Back -->
+
+    <div class="back-link">
+
+        <a href="/">
+            ← Back to B.Voc Information Hub
+        </a>
+
+    </div>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+    // =====================================================
+    // FIREBASE IMPORTS
+    // =====================================================
+
+    import {
+        initializeApp
+    }
+    from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+    import {
+        getAuth,
+        signInWithEmailAndPassword
+    }
+    from
+    "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+    // =====================================================
+    // FIREBASE CONFIGURATION
+    // =====================================================
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyBCDKa_6V-J7TZW_3pi4K0G_3S7U5QETjg",
+
+        authDomain:
+            "bvoc-information-hub.firebaseapp.com",
+
+        projectId:
+            "bvoc-information-hub",
+
+        storageBucket:
+            "bvoc-information-hub.firebasestorage.app",
+
+        messagingSenderId:
+            "545656219765",
+
+        appId:
+            "1:545656219765:web:3688bef19ebb3db3fef03c",
+
+        measurementId:
+            "G-53PWHVHNBB"
+
+    };
+
+
+    // =====================================================
+    // INITIALIZE FIREBASE
+    // =====================================================
+
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const auth =
+        getAuth(app);
+
+
+    // =====================================================
+    // LOGIN FORM
+    // =====================================================
+
+    const loginForm =
+        document.getElementById("login-form");
+
+
+    loginForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const message =
+                document
+                    .getElementById("message");
+
+
+            message.textContent =
+                "Logging in...";
+
+            message.style.color =
+                "#64748b";
+
+
+            try {
+
+
+                // =========================================
+                // FIREBASE LOGIN
+                // =========================================
+
+                const userCredential =
+                    await signInWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                // =========================================
+                // GET FIREBASE ID TOKEN
+                // =========================================
+
+                const idToken =
+                    await user.getIdToken();
+
+
+                // =========================================
+                // SEND TOKEN TO FLASK
+                // =========================================
+
+                const response =
+                    await fetch(
+                        "/auth/session",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                idToken:
+                                    idToken
+
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                // =========================================
+                // LOGIN SUCCESS
+                // =========================================
+
+                if (response.ok) {
+
+
+                    // =====================================
+                    // CHECK ADMIN ROLE
+                    // =====================================
+
+                    if (
+                        data.role !== "admin" &&
+                        data.role !== "department_admin"
+                    ) {
+
+                        message.textContent =
+                            "This account does not have administrator access.";
+
+                        message.style.color =
+                            "#dc2626";
+
+                        return;
+
+                    }
+
+
+                    // =====================================
+                    // SUCCESS
+                    // =====================================
+
+                    message.textContent =
+                        "Admin login successful!";
+
+                    message.style.color =
+                        "#16a34a";
+
+
+                    setTimeout(
+                        () => {
+
+                            window.location.href =
+                                "/admin";
+
+                        },
+                        800
+                    );
+
+                }
+
+
+                // =========================================
+                // SERVER LOGIN ERROR
+                // =========================================
+
+                else {
+
+                    message.textContent =
+                        data.message ||
+                        "Login failed.";
+
+                    message.style.color =
+                        "#dc2626";
+
+                }
+
+
+            }
+
+
+            // =============================================
+            // FIREBASE ERROR
+            // =============================================
+
+            catch (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
+
+                message.style.color =
+                    "#dc2626";
+
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    message.textContent =
+                        "Incorrect email or password.";
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/user-not-found"
+                ) {
+
+                    message.textContent =
+                        "No account found with this email.";
+
+                }
+
+                else if (
+                    error.code ===
+                    "auth/wrong-password"
+                ) {
+
+                    message.textContent =
+                        "Incorrect password.";
+
+                }
+
+                else {
+
+                    message.textContent =
+                        "Login failed. Please try again.";
+
+                }
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
